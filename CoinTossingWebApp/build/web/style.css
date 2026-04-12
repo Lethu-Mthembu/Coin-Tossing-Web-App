@@ -1,0 +1,313 @@
+/* --- Google Fonts import --- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap');
+
+/* --- CSS Variables: change colours and fonts here --- */
+:root {
+    --bg:           #f2ede8;       /* warm cream background */
+    --surface:      #e8e1d9;       /* slightly darker card background */
+    --border:       #c9bfb3;       /* soft border colour */
+    --text-dark:    #2e2c2a;       /* near-black text */
+    --text-mid:     #5c5651;       /* mid-grey text for subtitles */
+    --text-light:   #9e978f;       /* light grey for hints */
+    --accent:       #6b7c6e;       /* muted sage green accent */
+    --accent-hover: #556160;       /* darker accent for hover states */
+    --correct:      #5a7a5c;       /* green for correct guess */
+    --wrong:        #8c4a3e;       /* muted red for wrong guess */
+    --font-head:    'Playfair Display', serif;   /* heading font */
+    --font-body:    'Lato', sans-serif;          /* body font */
+    --radius:       12px;          /* border radius for cards */
+    --shadow:       0 4px 24px rgba(0,0,0,0.08); /* shadow */
+    --transition:   0.25s ease;    /* transition speed */
+}
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text-dark);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* --- Card container --- */
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 48px 52px;
+    width: 100%;
+    max-width: 560px;          /* cards max-width */
+    animation: fadeUp 0.4s ease both;
+}
+
+/* --- Card fade-in animation --- */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Page heading --- */
+h1 {
+    font-family: var(--font-head);
+    font-size: 2rem;           /* heading size */
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+
+/* -- line under the heading --- */
+.divider {
+    width: 48px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+    margin: 12px 0 28px;       /* change the spacing below the divider here */
+}
+
+/* --- Paragraph text --- */
+p {
+    color: var(--text-mid);
+    margin-bottom: 24px;
+    font-size: 0.97rem;
+}
+
+p b, p strong {
+    color: var(--text-dark);
+    font-weight: 700;
+}
+
+/* --- Form labels --- */
+label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 6px;
+}
+
+/* --- Text inputs --- */
+input[type="text"] {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color var(--transition), box-shadow var(--transition);
+    margin-bottom: 20px;
+}
+
+input[type="text"]:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(107,124,110,0.15);
+}
+
+input[type="text"]::placeholder {
+    color: var(--text-light);
+}
+
+
+.btn {
+    display: inline-block;
+    padding: 13px 32px;
+    background: var(--accent);   /* change button colour here */
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background var(--transition), transform var(--transition);
+    width: 100%;
+    text-align: center;
+}
+
+.btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+}
+
+/* --- Ghost/outline button --- */
+.btn-ghost {
+    background: transparent;
+    border: 1.5px solid var(--border);
+    color: var(--text-mid);
+    margin-top: 10px;
+}
+
+.btn-ghost:hover {
+    background: var(--border);
+    color: var(--text-dark);
+    transform: translateY(-1px);
+}
+
+/* --- Coin flip animation --- */
+.coin-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 24px 0;
+}
+
+.coin {
+    width: 80px;               /* change coin size here */
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #c9bfb3, #e8e1d9);
+    border: 3px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-head);
+    font-size: 1.5rem;
+    color: var(--text-mid);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    animation: spin 0.6s ease both;
+}
+
+@keyframes spin {
+    from { transform: rotateY(0deg) scale(0.8); opacity: 0; }
+    to   { transform: rotateY(360deg) scale(1); opacity: 1; }
+}
+
+/* --- Result badges --- */
+.badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.badge-correct {
+    background: rgba(90,122,92,0.15);
+    color: var(--correct);
+}
+
+.badge-wrong {
+    background: rgba(140,74,62,0.15);
+    color: var(--wrong);
+}
+
+/* --- Result tables --- */
+.result-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.95rem;
+}
+
+.result-table td, .result-table th {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+.result-table th {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    text-align: left;
+}
+
+.result-table td:first-child {
+    color: var(--text-light);
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    width: 40%;
+}
+
+.result-table td:last-child {
+    color: var(--text-dark);
+    font-weight: 400;
+}
+
+/* --- Summary stats row --- */
+.stats-row {
+    display: flex;
+    gap: 16px;
+    margin: 20px 0;
+}
+
+.stat-box {
+    flex: 1;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+}
+
+.stat-box .stat-num {
+    font-family: var(--font-head);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1;
+}
+
+.stat-box .stat-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-top: 4px;
+}
+
+/* --- Navigation links --- */
+.nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 28px;
+}
+
+/* --- Error or info notice box --- */
+.notice {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    font-size: 0.93rem;
+    color: var(--text-mid);
+}
+
+/* --- Footer --- */
+.footer {
+    margin-top: 32px;
+    font-size: 0.78rem;
+    color: var(--text-light);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-align: center;
+}
